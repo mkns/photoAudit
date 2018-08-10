@@ -1,0 +1,27 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+use File::Basename;
+use Data::Dumper;
+use JSON;
+
+my @list = `find . -type f`;
+my $data = {};
+foreach my $file ( @list ) {
+    chomp( $file );
+    my @stat = stat( $file );
+    my ( $name, $path ) = fileparse( $file );
+    next if $path =~ /CVS/;
+    my $thumbnail = ( $path =~ /thumbnail/ ) ? 'y' : 'n';
+    my ( $year ) = $path =~ /\w*(\d{4}).*/;
+    $data->{$file} = { name => $name,
+		       filesize => $stat[7],
+		       path => $path,
+		       # stat => \@stat,
+		       thumbnail => $thumbnail,
+		       year => $year,
+    };
+}
+my $json = new JSON;
+print $json->pretty->encode( $data ), "\n";
