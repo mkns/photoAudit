@@ -15,12 +15,14 @@ foreach my $file ( @list ) {
     next if $path =~ /CVS/;
     my $thumbnail = ( $path =~ /thumbnail/ ) ? 'y' : 'n';
     my ( $year ) = $path =~ /\w*(\d{4}).*/;
+    my ( $monthyear ) = $path =~ /^\.\/(\w*?)\//;
     push @$data, { name => $name,
 		   filesize => $stat[7],
 		   path => $path,
 		   # stat => \@stat,
 		   thumbnail => $thumbnail,
 		   year => $year,
+		   monthyear => $monthyear,
     };
 }
 my $json = new JSON;
