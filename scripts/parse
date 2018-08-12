@@ -23,6 +23,7 @@ foreach my $file ( @list ) {
 		   thumbnail => $thumbnail,
 		   year => $year,
 		   monthyear => $monthyear,
+		   file => $file,
     };
 }
 my $json = new JSON;

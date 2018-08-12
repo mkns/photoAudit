@@ -1,10 +1,9 @@
 package com.kennyscott.photoaudit.controller;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +13,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
-import com.kennyscott.photoaudit.Foo;
+import com.google.gson.reflect.TypeToken;
+import com.kennyscott.photoaudit.dao.JsonDataReader;
+import com.kennyscott.photoaudit.entity.Photo;
 
 @Controller
 public class MyController {
 
 	@Autowired
-	private Foo foo;
+	private Gson gson;
 
 	@Autowired
-	private Gson gson;
+	private JsonDataReader jsonDataReader;
 
 	final static Logger LOG = Logger.getLogger(MyController.class);
 
@@ -31,41 +32,17 @@ public class MyController {
 	@ResponseBody
 	public String fnarr() throws FileNotFoundException {
 		LOG.info("fnarr running");
-		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		InputStream input = classLoader.getResourceAsStream("data/server");
-		String result = getStringFromInputStream(input);
-		LOG.info(result);
-		foo.setFoo("fnarr");
-		return gson.toJson(foo);
-	}
+		String result = jsonDataReader.readData("data/server");
+		// LOG.info(result);
 
-	private static String getStringFromInputStream(InputStream is) {
-
-		BufferedReader br = null;
-		StringBuilder sb = new StringBuilder();
-
-		String line;
-		try {
-
-			br = new BufferedReader(new InputStreamReader(is));
-			while ((line = br.readLine()) != null) {
-				sb.append(line);
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+		Type listType = new TypeToken<ArrayList<Photo>>() {}.getType();
+		List<Photo> yourClassList = new Gson().fromJson(result, listType);
+		LOG.info("There are " + yourClassList.size());
+		for ( Photo photo : yourClassList ) {
+			LOG.info(photo.getFile());
 		}
 
-		return sb.toString();
-
+		return gson.toJson(yourClassList);
 	}
 
 }

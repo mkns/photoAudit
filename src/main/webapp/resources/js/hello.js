@@ -12,7 +12,7 @@ function success(data) {
 	console.log(data);
 	console.log(JSON.stringify(data));
 	for ( var key in data) {
-		console.log("Key is " + key + " and value is " + data[key]);
+		// console.log("Key is " + key + " and value is " + data[key]);
 	}
-	$("#foo").text(data['foo']);
+	$("#foo").text(JSON.stringify(data));
 }
