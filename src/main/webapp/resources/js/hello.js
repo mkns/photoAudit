@@ -9,10 +9,18 @@ $(function() {
 });
 
 function success(data) {
-	console.log(data);
-	console.log(JSON.stringify(data));
 	for ( var key in data) {
-		// console.log("Key is " + key + " and value is " + data[key]);
+		var tr = $('<tr/>');
+		$(tr).append($('<td/>').text(data[key]['file']));
+		$(tr).append($('<td/>').text(data[key]['filesize']));
+		$(tr).append($('<td/>').text(data[key]['name']));
+		$(tr).append($('<td/>').text(data[key]['thumbnail']));
+		$(tr).append($('<td/>').text(data[key]['path']));
+		$(tr).append($('<td/>').text(data[key]['monthyear']));
+		$(tr).append($('<td/>').text(data[key]['year']));
+		$('#datarows').append(tr);
 	}
-	$("#foo").text(JSON.stringify(data));
+	$('#datatable').DataTable({
+		"paging" : false
+	});
 }

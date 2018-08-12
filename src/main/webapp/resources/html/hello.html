@@ -4,9 +4,27 @@
 <title>Hello</title>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/hello.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/datatables.min.css" />
+<script type="text/javascript" src="../js/datatables.min.js"></script>
 </head>
 <body>
 	<p>This is a basic page (it sure is...!)</p>
 	<p id="foo"></p>
+
+	<table id="datatable" class="cell-border compact stripe">
+		<thead>
+			<tr>
+				<th>File</th>
+				<th>Filesize</th>
+				<th>Name</th>
+				<th>Thumbnail</th>
+				<th>Path</th>
+				<th>Monthyear</th>
+				<th>Year</th>
+			</tr>
+		</thead>
+		<tbody id="datarows">
+		</tbody>
+	</table>
 </body>
 </html>
