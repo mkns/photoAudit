@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kennyscott.photoaudit.dao.JsonDataReader;
 import com.kennyscott.photoaudit.entity.Photo;
+import com.kennyscott.photoaudit.entity.PhotosByMonth;
 
 @Controller
 public class MyController {
@@ -28,17 +29,34 @@ public class MyController {
 
 	final static Logger LOG = Logger.getLogger(MyController.class);
 
+	final static String serverFilename = "data/server";
+
+	@RequestMapping(value = "/monthSummary", method = RequestMethod.GET)
+	@ResponseBody
+	public String monthSummary() throws FileNotFoundException {
+		String result = jsonDataReader.readData(serverFilename);
+		Type listType = new TypeToken<ArrayList<Photo>>() {
+		}.getType();
+		List<Photo> photos = new Gson().fromJson(result, listType);
+		PhotosByMonth photosByMonth = new PhotosByMonth();
+		for (Photo photo : photos) {
+			photosByMonth.addPhoto(photo);
+		}
+		return gson.toJson(photosByMonth.getMonthsCount());
+	}
+
 	@RequestMapping(value = "/heyJson", method = RequestMethod.GET)
 	@ResponseBody
 	public String fnarr() throws FileNotFoundException {
 		LOG.info("fnarr running");
-		String result = jsonDataReader.readData("data/server");
+		String result = jsonDataReader.readData(serverFilename);
 		// LOG.info(result);
 
-		Type listType = new TypeToken<ArrayList<Photo>>() {}.getType();
+		Type listType = new TypeToken<ArrayList<Photo>>() {
+		}.getType();
 		List<Photo> yourClassList = new Gson().fromJson(result, listType);
 		LOG.info("There are " + yourClassList.size());
-		for ( Photo photo : yourClassList ) {
+		for (Photo photo : yourClassList) {
 			LOG.info(photo.getFile());
 		}
 

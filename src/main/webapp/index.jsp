@@ -7,6 +7,7 @@
 <body>
 <h1>Index</h1>
 <ul>
+<li><a href="v/monthSummary.html">Month Summary</a></li>
 <li><a href="v/hello.html">Hello</a></li>
 </ul>
 </body>
