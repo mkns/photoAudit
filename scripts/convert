@@ -1,0 +1,10 @@
+#!/usr/bin/perl -w
+
+use strict;
+use Data::Dumper;
+use JSON;
+
+my @data = do $ARGV[0];
+
+my $json = new JSON;
+print $json->pretty->encode( $data[0] ), "\n";
