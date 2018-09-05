@@ -31,7 +31,7 @@ public class MyController {
 
 	final static String serverFilename = "data/server";
 
-	@RequestMapping(value = "/monthSummary", method = RequestMethod.GET)
+	@RequestMapping(value = "/monthSummaryController", method = RequestMethod.GET)
 	@ResponseBody
 	public String monthSummary() throws FileNotFoundException {
 		String result = jsonDataReader.readData(serverFilename);

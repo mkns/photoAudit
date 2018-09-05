@@ -1,7 +1,7 @@
 $(function() {
 	console.log("hello");
 	$.get({
-		url : '../heyJson',
+		url : 'heyJson',
 		data : null,
 		success : success,
 		dataType : 'json'
