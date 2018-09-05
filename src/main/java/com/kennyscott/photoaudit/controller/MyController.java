@@ -63,4 +63,10 @@ public class MyController {
 		return gson.toJson(yourClassList);
 	}
 
+	@RequestMapping(value = "/")
+	public String index() {
+		LOG.info("index called");
+		return "index.html";
+	}
+
 }
