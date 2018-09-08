@@ -1,19 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.kennyscott.photoaudit</groupId>
-  <artifactId>photoAudit</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>photoAudit Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.kennyscott.photoaudit</groupId>
+	<artifactId>photoAudit</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>photoAudit Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- spring-context which provides core functionality -->
 		<dependency>
@@ -21,7 +21,7 @@
 			<artifactId>spring-context</artifactId>
 			<version>4.1.6.RELEASE</version>
 		</dependency>
- 
+
 		<!-- The spring-aop module provides an AOP Alliance-compliant aspect-oriented 
 			programming implementation allowing you to define -->
 		<dependency>
@@ -29,7 +29,7 @@
 			<artifactId>spring-aop</artifactId>
 			<version>4.1.6.RELEASE</version>
 		</dependency>
- 
+
 		<!-- The spring-webmvc module (also known as the Web-Servlet module) contains 
 			Spring’s model-view-controller (MVC) and REST Web Services implementation 
 			for web applications -->
@@ -38,7 +38,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.1.6.RELEASE</version>
 		</dependency>
- 
+
 		<!-- The spring-web module provides basic web-oriented integration features 
 			such as multipart file upload functionality and the initialization of the 
 			IoC container using Servlet listeners and a web-oriented application context -->
@@ -48,46 +48,46 @@
 			<version>4.1.6.RELEASE</version>
 		</dependency>
 
-	<dependency>
-		<groupId>log4j</groupId>
-		<artifactId>log4j</artifactId>
-		<version>1.2.17</version>
-	</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
 
-<dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.8.5</version>
-</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
 
 
-  </dependencies>
-  <build>
-    <finalName>photoAudit</finalName>
-    <plugins>
-    <plugin>
-    <groupId>org.apache.tomcat.maven</groupId>
-    <artifactId>tomcat7-maven-plugin</artifactId>
-    <version>2.2</version>
-    <configuration>
-        <url>http://localhost:8080/manager/text</url>
-        <server>TomcatServer</server>
-        <path>/photoAudit</path>
-    </configuration>
-</plugin>
+	</dependencies>
+	<build>
+		<finalName>photoAudit</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8080/manager/text</url>
+					<server>TomcatServer</server>
+					<path>/photoAudit</path>
+				</configuration>
+			</plugin>
 
-<plugin>
-  <groupId>org.mortbay.jetty</groupId>
-  <artifactId>jetty-maven-plugin</artifactId>
-  <version>8.1.7.v20120910</version>
-  <configuration>
-    <scanIntervalSeconds>10</scanIntervalSeconds>
-    <webApp>
-      <contextPath>/photoAudit</contextPath>
-    </webApp>
-  </configuration>
-</plugin>
-    
-    </plugins>
-  </build>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>8.1.7.v20120910</version>
+				<configuration>
+					<scanIntervalSeconds>5</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/photoAudit</contextPath>
+					</webApp>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
 </project>
